@@ -26,6 +26,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)encodeRestorableStateWithCoder:(NSCoder *)coder{
+    
+    [coder encodeObject:_imageView.image forKey:@"image"];
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+-(void)decodeRestorableStateWithCoder:(NSCoder *)coder{
+    UIImage *image=[coder decodeObjectForKey:@"image"];
+    _imageView.image=image;
+    [super decodeRestorableStateWithCoder:coder];
+}
+
 - (IBAction)selectImage:(UIButton *)sender {
     
     UIImagePickerController *imagePickerController=[[UIImagePickerController alloc]init];
